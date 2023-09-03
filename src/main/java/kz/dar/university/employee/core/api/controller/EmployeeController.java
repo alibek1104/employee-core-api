@@ -2,12 +2,11 @@ package kz.dar.university.employee.core.api.controller;
 
 import kz.dar.university.employee.core.api.model.Employee;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import service.EmployeeService;
+import kz.dar.university.employee.core.api.service.EmployeeService;
 
+import javax.validation.Valid;
 import java.util.List;
-import java.util.Random;
 
 
 @RestController
@@ -22,7 +21,7 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     @PostMapping
-    public void createEmployee(@RequestBody Employee employee) {
+    public void createEmployee(@RequestBody @Valid Employee employee) {
         employeeService.createEmployee(employee);
     }
 
@@ -47,4 +46,10 @@ public class EmployeeController {
     public void deleteEmployee(@PathVariable String id) {
         employeeService.deleteEmployeeById(id);
     }
+
+    @GetMapping("check")
+    public String check() {
+        return "employee-core-api is working";
+    }
+
 }

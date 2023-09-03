@@ -1,4 +1,4 @@
-package service;
+package kz.dar.university.employee.core.api.service;
 
 import kz.dar.university.employee.core.api.model.Employee;
 

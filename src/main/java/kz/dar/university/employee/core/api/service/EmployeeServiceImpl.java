@@ -1,4 +1,4 @@
-package service;
+package kz.dar.university.employee.core.api.service;
 
 import kz.dar.university.employee.core.api.model.Employee;
 import org.springframework.stereotype.Service;
@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -14,6 +15,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void createEmployee(Employee employee) {
+        employee.setEmployeeId(UUID.randomUUID().toString());
         employees.put(employee.getEmployeeId(), employee);
     }
 
