@@ -1,10 +1,10 @@
-package kz.dar.university.employee.core.api.service;
+package kz.dar.university.employee.core.api.service.deprecated;
 
 import kz.dar.university.employee.core.api.model.Employee;
 
 import java.util.List;
 
-public interface EmployeeService {
+public interface EmployeeServiceOId {
     void createEmployee(Employee employee);
 
     List<Employee> getAllEmployees();
