@@ -1,55 +1,39 @@
 package kz.dar.university.employee.core.api.controller;
 
-import kz.dar.university.employee.core.api.model.Employee;
-import lombok.RequiredArgsConstructor;
+import kz.dar.university.employee.core.api.model.EmployeeRequest;
+import kz.dar.university.employee.core.api.model.EmployeeResponse;
+import kz.dar.university.employee.core.api.service.employee.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import kz.dar.university.employee.core.api.service.deprecated.EmployeeServiceOId;
+import org.w3c.dom.stylesheets.LinkStyle;
 
-import javax.validation.Valid;
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/employee")
-@RequiredArgsConstructor
 public class EmployeeController {
-
-//    HashMap<String, Employee> employees; (мы перенесли этот функционал)
-//    @Autowired
-//    private EmployeeService employeeService;
-
-    private final EmployeeServiceOId employeeServiceOId;
+    @Autowired
+    private EmployeeService employeeService;
 
     @PostMapping
-    public void createEmployee(@RequestBody @Valid Employee employee) {
-        employeeServiceOId.createEmployee(employee);
+    public EmployeeResponse createEmployee(@RequestBody EmployeeRequest employeeRequest) {
+        return employeeService.createEmployee(employeeRequest);
     }
-
+    @PutMapping
+    public EmployeeResponse updateEmployee(@RequestParam String employeeId, @RequestBody EmployeeRequest employeeRequest) {
+        employeeRequest.setEmployeeId(employeeId);
+        return employeeService.updateEmployee(employeeRequest);
+    }
+    @GetMapping
+    public EmployeeResponse getEmployeeById(@RequestParam String employeeId) {
+        return employeeService.getEmployeeById(employeeId);
+    }
     @GetMapping("/all")
-    public List<Employee> getAllEmployees() {
-        return employeeServiceOId.getAllEmployees();
+    public List<EmployeeResponse> getAllEmployees() {
+        return employeeService.getAllEmployees();
     }
-
-    @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable String id) {
-        return employeeServiceOId.getEmployeeById(id);
+    @DeleteMapping
+    public void deleteEmployeeById(@RequestParam String employeeId) {
+        employeeService.deleteEmployeeById(employeeId);
     }
-
-    @PutMapping("/{id}")
-    public void updateEmployee(@PathVariable String id,
-                               @RequestBody Employee employee) {
-        employee.setEmployeeId(id);
-        employeeServiceOId.updateEmployee(id, employee);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteEmployee(@PathVariable String id) {
-        employeeServiceOId.deleteEmployeeById(id);
-    }
-
-    @GetMapping("check")
-    public String check() {
-        return "employee-core-api is working";
-    }
-
 }
