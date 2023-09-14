@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-@Service
+//@Service
 @Deprecated
 public class EmployeeServiceImplOld implements EmployeeServiceOId {
 

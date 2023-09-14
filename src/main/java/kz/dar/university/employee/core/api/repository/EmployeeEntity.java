@@ -16,7 +16,7 @@ public class EmployeeEntity {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(unique = true, columnDefinition = "employee_id")
+    @Column(unique = true)
     private String employeeId;
     @Column(nullable = false, length = 50)
     private String name;
