@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Deprecated
 public class EmployeeServiceImplOld implements EmployeeServiceOId {
 
     HashMap<String, Employee> employees = new HashMap<>();

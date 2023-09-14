@@ -4,6 +4,8 @@ import kz.dar.university.employee.core.api.model.Employee;
 
 import java.util.List;
 
+@Deprecated
+
 public interface EmployeeServiceOId {
     void createEmployee(Employee employee);
 

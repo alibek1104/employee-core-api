@@ -5,21 +5,18 @@ import lombok.Data;
 import lombok.Generated;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 @Entity
-@Table(name = "employee_table")
+@Table(name = "employees")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeEntity {
     @Id
-    @Generated
+    @GeneratedValue
     private Long id;
-    @Column(unique = true)
+    @Column(unique = true, columnDefinition = "employee_id")
     private String employeeId;
     @Column(nullable = false, length = 50)
     private String name;
